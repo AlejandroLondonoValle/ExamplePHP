@@ -21,7 +21,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //Muestra el formulario de Crear
+        return ("Muestra el formulario de Crear");
     }
 
     /**
@@ -29,7 +30,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Guarda la informacion en la base de datos
+        return ("Guarda la informacion en la base de datos");
     }
 
     /**
@@ -37,7 +39,8 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
+        //Muestra el elemento puntual de la base de datos
+        return ("Muestra el elemento puntual de la base de datos");
     }
 
     /**
@@ -45,7 +48,8 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //Busca los datos de un elemento y los organiza en un formulario para su posterior edicion
+        return ("Busca los datos de un elemento y los organiza en un formulario para su posterior edicion");
     }
 
     /**
@@ -53,7 +57,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //Este metodo actualiza los datos en la base de datos
+        return ("Este metodo actualiza los datos en la base de datos");
     }
 
     /**
@@ -61,6 +66,7 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //Este metodo se encarga de eliminar un elemento en la base de datos
+        return ("Este metodo se encarga de eliminar un elemento en la base de datos");
     }
 }
