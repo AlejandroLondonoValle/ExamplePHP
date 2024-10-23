@@ -12,7 +12,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //Obtenemos todas las categorias
         $categories = Category::All();
+        //Compactamos y enviamos esos datos a categories.index
         return view('categories.index', compact('categories'));
     }
 
@@ -25,13 +27,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'name' => 'required|string|max:50',
+            'description' => 'nullable|string|max:600',
         ]);
 
-        // Crear la categoría
+        // Crear la nueva categoría
         Category::create($request->all());
-
+        
         // Redirigir a la lista de categorías con un mensaje
         return redirect()->route('categories.index')->with('success', 'Categoría creada exitosamente.');
     }
@@ -44,7 +46,7 @@ class CategoryController extends Controller
 
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id); // Busca la categoría por ID
+        $category = Category::findOrFail($id); 
         return view('categories.edit', compact('category'));
     }
 
@@ -52,8 +54,8 @@ class CategoryController extends Controller
     {
         // Validar la solicitud
         $request->validate([
-            'name' => 'required|string|max:255',
-            // Otras reglas de validación según tus necesidades
+            'name' => 'required|string|max:50',
+            'description' => 'nullable|string|max:600',
         ]);
 
         // Buscar la categoría

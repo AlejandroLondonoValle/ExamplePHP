@@ -19,7 +19,9 @@
     </form>
 </div>
 
-<script>
+
+{{-- <script>
+    //Descomentar en caso de que se necesite
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('category-form').addEventListener('submit', function(event) {
             event.preventDefault(); // Evitar el envío inmediato del formulario
@@ -41,4 +43,4 @@
             });
         });
     });
-</script>
+</script> --}}
