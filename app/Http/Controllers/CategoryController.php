@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -24,15 +25,12 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:50',
-            'description' => 'nullable|string|max:600',
-        ]);
+        $validatedData = $request->validated();
 
-        // Crear la nueva categoría
-        Category::create($request->all());
+        // Crear la categoría con los datos validados
+        Category::create($validatedData);
         
         // Redirigir a la lista de categorías con un mensaje
         return redirect()->route('categories.index')->with('success', 'Categoría creada exitosamente.');
@@ -52,17 +50,12 @@ class CategoryController extends Controller
 
     public function update(Request $request, string $id)
     {
-        // Validar la solicitud
-        $request->validate([
-            'name' => 'required|string|max:50',
-            'description' => 'nullable|string|max:600',
-        ]);
+        // Validar los datos con la solicitud
+        $validatedData = $request->validated();
 
-        // Buscar la categoría
+        // Buscar la categoría por ID y actualizar sus datos con los datos validados
         $category = Category::findOrFail($id);
-
-        // Actualizar la categoría
-        $category->update($request->all());
+        $category->update($validatedData);
 
         // Redirigir a la lista de categorías con un mensaje
         return redirect()->route('categories.index')->with('success', 'Categoría actualizada exitosamente.');
