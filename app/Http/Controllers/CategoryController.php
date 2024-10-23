@@ -48,7 +48,7 @@ class CategoryController extends Controller
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
         // Validar los datos con la solicitud
         $validatedData = $request->validated();

@@ -1,4 +1,4 @@
-@extends('layouts.guest-personal')
+@extends('layouts.inicio')
 
 @section('content')
     <div class="container mx-auto py-8">

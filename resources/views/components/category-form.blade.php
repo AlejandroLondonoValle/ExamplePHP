@@ -1,19 +1,33 @@
 <div class="py-8 px-4 sm:px-6 lg:px-18">
-    <form id="category-form" action="{{ $category ? route('categories.update', $category->id) : route('categories.store') }}" method="POST" class="bg-white shadow-md rounded-lg p-6">
+    <form id="category-form"
+        action="{{ $category ? route('categories.update', $category->id) : route('categories.store') }}" method="POST"
+        class="bg-white shadow-md rounded-lg p-6">
         @csrf
-        @if($category)
+        @if ($category)
             @method('PUT')
         @endif
 
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">Nombre:</label>
-            <input type="text" name="name" id="name" value="{{ $category ? $category->name : '' }}" class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            
+            <input type="text" name="name" id="name" value="{{ $category ? $category->name : '' }}"
+                class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required>
+            @error('name')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+        </div>
+        <div class="mb-6">
             <label for="description" class="block text-gray-700 text-sm font-semibold mb-2">Descripción:</label>
-            <input type="text" name="description" id="description" value="{{ $category ? $category->description : '' }}" class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <textarea type="text" name="description" id="description" value="{{ $category ? $category->description : '' }}"
+                class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            @error('description')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
+
         </div>
 
-        <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
+        <button type="submit"
+            class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200">
             {{ $category ? 'Actualizar' : 'Crear' }}
         </button>
     </form>

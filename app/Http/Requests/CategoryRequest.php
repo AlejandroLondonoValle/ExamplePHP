@@ -23,8 +23,8 @@ class CategoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:150|unique:categories,name,' . $this->category,
-            'description' => 'nullable|string|max:600',
+            'name' => 'required|string|max:50|unique:categories,name,' . $this->category,
+            'description' => 'nullable|string|max:500',
         ];
     }
 
@@ -33,8 +33,8 @@ class CategoryRequest extends FormRequest
         return [
             'name.required' => 'El nombre es obligatorio.',
             'name.unique' => 'El nombre ya está en uso.',
-            'name.max' => 'El nombre sobre pasa los caracteres permitidos (150)',
-            'description.max' => 'La descripción sobre pasa los caracteres permitidos (600).',
+            'name.max' => 'El nombre sobre pasa los caracteres permitidos (50)',
+            'description.max' => 'La descripción sobre pasa los caracteres permitidos (500).',
         ];
     }
 }
