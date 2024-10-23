@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        //Obtenemos todas las categorias
         $categories = Category::All();
+        //Compactamos y enviamos esos datos a categories.index
         return view('categories.index', compact('categories'));
     }
 
@@ -22,16 +25,13 @@ class CategoryController extends Controller
         return view('categories.create');
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-        ]);
+        $validatedData = $request->validated();
 
-        // Crear la categoría
-        Category::create($request->all());
-
+        // Crear la categoría con los datos validados
+        Category::create($validatedData);
+        
         // Redirigir a la lista de categorías con un mensaje
         return redirect()->route('categories.index')->with('success', 'Categoría creada exitosamente.');
     }
@@ -44,23 +44,18 @@ class CategoryController extends Controller
 
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id); // Busca la categoría por ID
+        $category = Category::findOrFail($id); 
         return view('categories.edit', compact('category'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, string $id)
     {
-        // Validar la solicitud
-        $request->validate([
-            'name' => 'required|string|max:255',
-            // Otras reglas de validación según tus necesidades
-        ]);
+        // Validar los datos con la solicitud
+        $validatedData = $request->validated();
 
-        // Buscar la categoría
+        // Buscar la categoría por ID y actualizar sus datos con los datos validados
         $category = Category::findOrFail($id);
-
-        // Actualizar la categoría
-        $category->update($request->all());
+        $category->update($validatedData);
 
         // Redirigir a la lista de categorías con un mensaje
         return redirect()->route('categories.index')->with('success', 'Categoría actualizada exitosamente.');

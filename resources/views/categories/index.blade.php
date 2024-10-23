@@ -1,4 +1,4 @@
-@extends('layouts.guest-personal')
+@extends('layouts.inicio')
 
 @section('content')
     <div class="container mx-auto py-8">
@@ -26,8 +26,11 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{ $category->name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $category->description }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{ route('categories.show', $category->id) }}"
+                                    class="text-blue-600 hover:text-blue-900">Detalles</a>
+
                                 <a href="{{ route('categories.edit', $category->id) }}"
-                                    class="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                    class="text-indigo-600 hover:text-indigo-900 inline-block ml-4">Editar</a>
 
                                 <form id="category-delete-form-{{ $category->id }}" action="{{ route('categories.destroy', $category->id) }}"
                                     method="POST" class="inline-block ml-4">
