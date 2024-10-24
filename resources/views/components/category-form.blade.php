@@ -9,7 +9,7 @@
 
         <div class="mb-4">
             <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">Nombre:</label>
-            <input type="text" name="name" id="name" value="{{ $category ? $category->name : '' }}"
+            <input type="text" name="name" id="name" value="{{ old('name', $category->name) }}"
                 class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required>
             @error('name')
@@ -18,8 +18,8 @@
         </div>
         <div class="mb-6">
             <label for="description" class="block text-gray-700 text-sm font-semibold mb-2">Descripción:</label>
-            <textarea type="text" name="description" id="description" value="{{ $category ? $category->description : '' }}"
-                class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            <textarea type="text" name="description" id="description"
+                class="form-control border border-gray-300 rounded-md p-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('description', $category->description) }}</textarea>
             @error('description')
                 <span class="text-red-500 text-sm">{{ $message }}</span>
             @enderror
@@ -34,7 +34,7 @@
 </div>
 
 
-{{-- <script>
+<script>
     //Descomentar en caso de que se necesite
     document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('category-form').addEventListener('submit', function(event) {
@@ -57,4 +57,4 @@
             });
         });
     });
-</script> --}}
+</script>
