@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Product extends Model
 {
     /*
     |--------------------------------------------------------------------------
@@ -12,7 +12,7 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'categories'; //Nombre del modelo
+    protected $table = 'products'; //Nombre del modelo
     protected $primaryKey = 'id';
     public $timestamps = true;
     // protected $guarded = [];
@@ -20,7 +20,8 @@ class Category extends Model
     protected $fillable = [  //Propiedades del modelo
         'name',
         'description',
-        // Otros campos...
+        'unit_value',
+        'category_id'
     ];
 
     // protected $hidden = [];
@@ -39,9 +40,9 @@ class Category extends Model
     |--------------------------------------------------------------------------
     */
     //Foreign keys y otras conexiones
-    public function products()
+    public function category()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsTo(Category::class);
     }
 
     /*
